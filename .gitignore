@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+target
+.idea
+.settings
+.idea_modules
+
