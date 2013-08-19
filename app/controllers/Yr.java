@@ -3,6 +3,7 @@ package controllers;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import play.libs.F;
@@ -22,13 +23,28 @@ public class Yr extends Controller {
             public JsonNode apply(WS.Response response) throws Throwable {
                 final NodeList weatherStations = XPath.selectNodes("//weatherstation", response.asXml());
                 final Node stationXmlNode = weatherStations.item(0);
-                final ObjectNode stationJsonNode = JsonNodeFactory.instance.objectNode();
+                final JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
+                final ObjectNode stationJsonNode = jsonNodeFactory.objectNode();
                 stationJsonNode.put("id", stationXmlNode.getAttributes().getNamedItem("stno").getNodeValue());
                 stationJsonNode.put("name", stationXmlNode.getAttributes().getNamedItem("name").getNodeValue());
-                final ObjectNode observationNode = JsonNodeFactory.instance.objectNode();
+
+                final ObjectNode positionNode = jsonNodeFactory.objectNode();
+                positionNode.put("longitude", Float.valueOf(XPath.selectText("//weatherstation/@lon", stationXmlNode)).floatValue());
+                positionNode.put("latitude", Float.valueOf(XPath.selectText("//weatherstation/@lat", stationXmlNode)).floatValue());
+                stationJsonNode.put("position", positionNode);
+
+                final ObjectNode observationNode = jsonNodeFactory.objectNode();
                 observationNode.put("description", XPath.selectText("//symbol/@name", stationXmlNode));
                 observationNode.put("timestamp", XPath.selectText("//symbol/@time", stationXmlNode));
                 stationJsonNode.put("observation", observationNode);
+                final ObjectNode temperatureNode = jsonNodeFactory.objectNode();
+                final NamedNodeMap temperatureElementAttributes = XPath.selectNode("//temperature", stationXmlNode).getAttributes();
+
+                temperatureNode.put("value", temperatureElementAttributes.getNamedItem("value").getNodeValue());
+                temperatureNode.put("unit", temperatureElementAttributes.getNamedItem("unit").getNodeValue());
+                temperatureNode.put("timestamp", XPath.selectText("//temperature/@time", stationXmlNode));
+                stationJsonNode.put("temperature", temperatureNode);
+
                 return stationJsonNode;
 
             }
