@@ -1,10 +1,27 @@
+@(resources: List[Resource])
 <html>
     <head>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet">
+
+
         @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
-                          module = routes.Assets.at("javascripts/main").url)
+                          module = routes.Assets.at("javascripts/javabin").url)
     </head>
 <body>
-<h1>@Messages("header")</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@Messages("header")</h1>
+        </div>
+        <div class="col-md-4">
+            <ul class="nav nav-list">
+                <li class="nav-header">@Messages("resources.title")</li>
+                @for(resource <- resources) {
+                    <li><a href="@resource.url" target="_blank">@resource.title</a> </li>
+                }
+            </ul>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -10,6 +10,8 @@ object ApplicationBuild extends Build {
   val appDependencies = Seq(
     // Add your project dependencies here,
     javaCore,
+    javaJdbc,
+    javaEbean,
     "com.newrelic.agent.java" % "newrelic-agent" % "2.21.3"
   )
 

@@ -1,44 +1,42 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.codehaus.jackson.JsonNode;
-import org.junit.*;
-
-import play.mvc.*;
-import play.test.*;
-import play.data.DynamicForm;
-import play.data.validation.ValidationError;
-import play.data.validation.Constraints.RequiredValidator;
-import play.i18n.Lang;
+import org.junit.Test;
+import play.i18n.Messages;
 import play.libs.F;
-import play.libs.F.*;
+import play.mvc.Content;
+import play.test.TestBrowser;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
-import static org.fest.assertions.Assertions.*;
 
 
 /**
-*
-* Simple (JUnit) tests that can call all parts of a play app.
-* If you are interested in mocking a whole application, see the wiki for more details.
-*
-*/
+ * Simple (JUnit) tests that can call all parts of a play app.
+ * If you are interested in mocking a whole application, see the wiki for more details.
+ */
 public class ApplicationTest {
 
-    @Test 
+    public static final int TEST_SERVER_PORT = 3101;
+
+    @Test
     public void simpleCheck() {
         int a = 1 + 1;
         assertThat(a).isEqualTo(2);
     }
-    
+
     @Test
     public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
+        Content html = views.html.index.render();
         assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+        assertThat(contentAsString(html)).contains(Messages.get("header"));
     }
-  
-   
+
+    @Test
+    public void testInBrowser() throws Exception {
+        running(testServer(TEST_SERVER_PORT), FIREFOX, new F.Callback<TestBrowser>() {
+            @Override
+            public void invoke(TestBrowser browser) throws Throwable {
+                browser.goTo("http://localhost:" + TEST_SERVER_PORT);
+                assertThat(browser.$("h1").getText()).isEqualTo(Messages.get("header"));
+            }
+        });
+    }
 }
