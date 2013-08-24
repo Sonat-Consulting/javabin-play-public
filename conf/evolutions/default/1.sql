@@ -1,7 +1,7 @@
 # --- !Ups
-
+CREATE SEQUENCE sq_resource;
 create table resource (
-  id                        bigint auto_increment not null,
+  id                        bigint NOT NULL DEFAULT nextval('sq_resource'),
   title                     varchar(512) not null,
   url                       varchar(512) not null,
   constraint pk_resource primary key (id))
