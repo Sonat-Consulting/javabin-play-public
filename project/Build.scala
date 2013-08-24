@@ -12,7 +12,7 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "org.postgresql" % "postgresql" % "9.2-1003-jdbc4",
+    "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
     "com.newrelic.agent.java" % "newrelic-agent" % "2.21.3"
   )
 
