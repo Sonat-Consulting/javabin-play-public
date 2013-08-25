@@ -22,5 +22,5 @@ GET        /glad/:country/:county/:municipality/:place        controllers.YrOgGl
 
 GET        /yr/bergen                                         controllers.Yr.observationsBergen()
 
-POST       /resource                                          controllers.ResourceController.save()
+POST       /                                                  controllers.ResourceController.save()
 

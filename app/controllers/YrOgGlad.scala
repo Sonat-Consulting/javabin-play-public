@@ -8,6 +8,8 @@ import scala.concurrent.ExecutionContext
 import ExecutionContext.Implicits.global
 import scala.xml.Node
 import play.api.Logger
+import play.api.cache.Cache
+import play.api.Play.current
 
 /**
  *
@@ -15,12 +17,17 @@ import play.api.Logger
  */
 object YrOgGlad {
 
+  private val cacheTimeout: Int = 10 * 60
+
   def observations(country: String, county: String, municipality: String, place: String) = Action {
-    Async {
-      WS.url(s"http://www.yr.no/sted/$country/$county/$municipality/$place/varsel.xml").get().map {
-        response =>
-          Ok(mapToJson(response.xml))
+    Cache.getOrElse(s"observations.$country.$county.$municipality.$place", cacheTimeout) {
+      Async {
+        WS.url(s"http://www.yr.no/sted/$country/$county/$municipality/$place/varsel.xml").get().map {
+          response =>
+            Ok(mapToJson(response.xml))
+        }
       }
+
     }
   }
 

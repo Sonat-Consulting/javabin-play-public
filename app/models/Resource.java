@@ -20,6 +20,8 @@ public class Resource extends Model {
     public String title;
 
     @Constraints.Required
+    @Constraints.Pattern(value = "^(http|https)\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\\-\\._\\?\\,\\'/\\\\\\+&amp;%\\$#\\=~])*$",
+            message = "error.constraint.url")
     @Column(length = 512, nullable = false)
     public String url;
 

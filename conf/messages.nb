@@ -7,3 +7,5 @@ resource.modal.title=Ny ressurs
 
 constraint.required=Påkrevd
 error.required=Dette feltet er påkrevd
+constraint.pattern=Verdien på være en gyldig HTTP eller HTTPS URL
+error.constraint.url=Verdien er ikke en gyldig HTTP eller HTTPS URL
