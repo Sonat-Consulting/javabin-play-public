@@ -1,4 +1,4 @@
-@(resources: List[Resource])
+@(resources: List[Resource], resourceForm: Form[Resource])
 <html>
     <head>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -18,10 +18,35 @@
         <div class="col-md-4">
             <ul class="nav nav-list">
                 <li class="nav-header">@Messages("resources.title")</li>
+                @import helper.twitterBootstrap._
                 @for(resource <- resources) {
                     <li><a href="@resource.url" target="_blank">@resource.title</a> </li>
                 }
+                <li>
+                    <div class="pull-right"><button type="button" class="btn" data-toggle="modal" data-target="#addResourceModal"><span class="glyphicon glyphicon-plus"></span></button></div>
+                </li>
             </ul>
+            <div class="modal fade" id="addResourceModal" tabindex="-1" role="dialog" aria-labelledby="resourceModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    @helper.form(action = routes.ResourceController.save(), 'role -> "form", 'id -> "resourceForm") {
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">@Messages("resource.modal.title")</h4>
+                        </div>
+                        <div class="modal-body">
+                            @helper.inputText(resourceForm("title"), '_label -> Messages("resource.title"))
+                            @helper.inputText(resourceForm("url"), '_label -> Messages("resource.url"))
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-record" title=""></span>
+                                @Messages("resource.save.label")</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div>
         </div>
     </div>
 

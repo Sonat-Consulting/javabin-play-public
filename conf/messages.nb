@@ -1,2 +1,9 @@
 header=JavaBin Play2 workshop
 resources.title=Nyttige ressurser
+resource.title=Navn
+resource.url=URL
+resource.save.label=Lagre
+resource.modal.title=Ny ressurs
+
+constraint.required=Påkrevd
+error.required=Dette feltet er påkrevd
