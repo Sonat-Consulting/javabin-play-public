@@ -6,7 +6,9 @@
 
 
         @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
-                          module = routes.Assets.at("javascripts/javabin").url)
+                          module = routes.Assets.at("javascripts/javabin.js").url,
+                          productionFolderPrefix = ""
+        )
     </head>
 <body>
     <div class="row">
