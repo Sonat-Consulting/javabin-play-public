@@ -1,0 +1,45 @@
+HOST: javabin.zapodot.org
+
+--- Javabin meetup example API v1 ---
+---
+Simple service created as part of the workspace material to the meetup 8/29-2013
+---
+
+--
+Twitter integration resources
+--
+Search for a list of tweets containg a specific search term
+GET /twitter/search/{hashtag}
+@hashtag = javazone (string) ... The hashtag to find status updates for
+< 200
+< Content-Type: application/json
+{ "items": [
+    {"id":370799052188684288,
+    "text":"Knowit is gjetting ready for #javaZone 2013 http://t.co/Bva8zVzKLS",
+    "user":"espentj",
+    "time":"Fri Aug 23 06:45:57 +0000 2013"},
+    {"id":370652908645535744,
+    "text":"Me ha gustado un vídeo de @YouTube (http://t.co/AU8NIsLRE1 - JavaZone 2013: Javapocalypse).",
+    "user":"IslaDelMono",
+    "time":"Thu Aug 22 21:05:14 +0000 2013"},
+    {"id":370646209461223424,
+    "text":"JavaZone 2013: Javapocalypse http://t.co/AT19bwmrAi",
+    "user":"ianvehrmt",
+    "time":"Thu Aug 22 20:38:37 +0000 2013"}
+] }
+
+--
+Yr integration resources
+--
+Find weather observations from local weather station
+GET /yr/bergen
+< 200
+< Content-Type: application/json
+{ "items": [{"id":"50540","name":"Bergen (Florida)","position":{"longitude":5.332699775695801,"latitude":60.382999420166016},"observation":{"description":"Lettskyet","timestamp":"2013-08-23T09:00:00Z"},"temperature":{"value":"22","unit":"celsius","timestamp":"2013-08-23T11:00:00Z"}} ]}
+
+Find weather observations from any given weather station
+GET /yr/{contry}/{county}/{municipality}/{place}
+< 200
+< Content-Type: application/json
+{"items: [
+{"id":"50540","name":"Bergen (Florida)","position":{"longitude":5.332699775695801,"latitude":60.382999420166016},"observation":{"description":"Klarvær","timestamp":"2013-08-25T09:00:00Z"},"temperature":{"value":"21","unit":"celsius","timestamp":"2013-08-25T11:00:00Z"}}]"}
