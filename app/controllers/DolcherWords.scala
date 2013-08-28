@@ -11,7 +11,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.Source
 
 /**
- *
+ * Dolcher ord er hentet fra http://www.mrsperkins.com/dolch.htm
  * @author sondre
  */
 object DolcherWords {
