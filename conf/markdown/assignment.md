@@ -36,4 +36,10 @@
 ### Bonuspoeng
  * bytte ut JQuery fra main.scala.html med et som er hostet hos en CDN ved hjelp av [RequireJS](http://www.playframework.com/documentation/2.1.x/RequireJS-support)
  * lagre tweets fra WS i H2
+ * Lage en JSon-konsumerende kontroller i Scala
+
+### Noen hints
+ * Eksempel applikasjon https://github.com/Sonat-Consulting/javabin-play-public
+ * Demo applikasjon (Java): https://github.com/Sonat-Consulting/javabin-play-java-demo
+
 
