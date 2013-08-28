@@ -12,8 +12,8 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
-    "com.newrelic.agent.java" % "newrelic-agent" % "2.21.3"
+    "com.newrelic.agent.java" % "newrelic-agent" % "2.21.3",
+    "org.pegdown" % "pegdown" % "1.4.1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

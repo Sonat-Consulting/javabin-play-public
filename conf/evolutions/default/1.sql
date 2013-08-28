@@ -14,6 +14,7 @@ INSERT INTO resource (title, url) VALUES ('Coffeescript', 'http://coffeescript.o
 INSERT INTO resource (title, url) VALUES ('Bootstrap', 'http://getbootstrap.com/');
 INSERT INTO resource (title, url) VALUES ('EBean ORM', 'http://www.avaje.org/ebean/documentation.html');
 INSERT INTO resource (title, url) VALUES ('Play2 Modules directory', 'http://www.playframework.com/documentation/2.1.x/Modules');
+INSERT INTO resource (title, url) VALUES ('Akka', 'http://akka.io/');
 
 
 

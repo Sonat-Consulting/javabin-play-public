@@ -1,8 +1,12 @@
+import models.Resource;
 import org.junit.Test;
+import play.data.Form;
 import play.i18n.Messages;
 import play.libs.F;
 import play.mvc.Content;
 import play.test.TestBrowser;
+
+import java.util.Collections;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
@@ -24,7 +28,8 @@ public class ApplicationTest {
 
     @Test
     public void renderTemplate() {
-        Content html = views.html.index.render();
+        Content html = views.html.index.render(Collections.<Resource>emptyList(),
+                Form.form(Resource.class));
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains(Messages.get("header"));
     }
