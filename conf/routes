@@ -3,24 +3,26 @@
 # ~~~~
 
 # Home page
-GET        /                                                  controllers.Application.index()
+GET         /                                                  controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file                                      controllers.Assets.at(path="/public", file)
+GET         /assets/*file                                      controllers.Assets.at(path="/public", file)
 
-GET        /twitter/rates/*resource                           controllers.Twitter.showRateLimitForResource(resource)
+GET         /twitter/rates/*resource                           controllers.Twitter.showRateLimitForResource(resource)
 
-GET        /twitter/weather/bergen                            controllers.Twitter.search(searchTerm = "vær", geoCode = "60.382999420166016,5.332699775695801,20km")
+GET         /twitter/weather/bergen                            controllers.Twitter.search(searchTerm = "vær", geoCode = "60.382999420166016,5.332699775695801,20km")
 
-GET        /twitter/search/:hashtag                           controllers.Twitter.search(hashtag, geoCode = "")
+GET         /twitter/search/:hashtag                           controllers.Twitter.search(hashtag, geoCode = "")
 
-GET        /twitter/search/:hashtag/:geoCode                  controllers.Twitter.search(hashtag, geoCode)
+GET         /twitter/search/:hashtag/:geoCode                  controllers.Twitter.search(hashtag, geoCode)
 
-GET        /yr/:country/:county/:municipality/:place          controllers.Yr.observations(country, county, municipality, place)
+GET         /yr/:country/:county/:municipality/:place          controllers.Yr.observations(country, county, municipality, place)
 
-GET        /glad/:country/:county/:municipality/:place        controllers.YrOgGlad.observations(country, county, municipality, place)
+GET         /glad/:country/:county/:municipality/:place        controllers.YrOgGlad.observations(country, county, municipality, place)
 
-GET        /yr/bergen                                         controllers.Yr.observationsBergen()
+GET         /yr/bergen                                         controllers.Yr.observationsBergen()
 
-POST       /                                                  controllers.ResourceController.save()
+POST        /                                                  controllers.ResourceController.save()
+
+GET         /dolcher                                           controllers.DolcherWords.index
 
