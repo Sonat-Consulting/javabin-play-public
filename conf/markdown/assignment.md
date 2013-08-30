@@ -1,4 +1,5 @@
-## Gruppeoppgave
+## Gruppeoppgave JavaBin Bergen 29/8-2013
+Presentasjonen finner du [her](https://docs.google.com/file/d/0B975zYU3GWXWV1pIb2NkQUVhODQ/edit?usp=sharing)
 ### Del 1
 
  1. Opprett nytt prosjekt. Velg Java-type (valg 2).
